@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <form action="">
+        <input type="text" name="Name">
+        <input type="text" name="Age">
+        <input type="button" value="Add" onclick="add()">
+        <select name="sort" id="">
+            <option disabled selected hidden value>Sort by</option>
+            <option> Name (ascendant)</option>
+            <option>Name (Descendant)</option>
+            <option>Age (ascendant)</option>
+            <option>Age (Descendant)</option>
+        </select>
+  </form>
+    <br><br><br>
+        <table border="1" id="myTable" width="30%">
+            <thead>
+                <th>Full Name</th>
+                <th>Age</th>  
+            </thead>
+            <tbody id="table_body">
+
+            </tbody>
+        </table>
+
+<script>
+    var table = document.getElementById('myTable')
+    var info = document.getElementsByTagName("input");
+    var listPersones =[]
+    class person {
+        constructor (Name,Age) {
+        this.Name = Name
+        this.Age = Age }
+    } 
+
+    // add totable js with click
+    function add(){
+        const persons = new person(info[0].value, info[1].value)
+        listPersones.push(persons); 
+        empty();
+        fill();  
+    }
+
+    // add elements to html table
+    function fill() {
+
+        for (i=0; i<listPersones.length; i++) {
+            var myTr = document.createElement("tr")
+            table.appendChild(myTr)
+                if(info[0].value!="" && info[1].value!="" ){
+                    myTr.innerHTML += "<td>" + listPersones[i].Name + "</td>"
+                    myTr.innerHTML += "<td>" + listPersones[i].Age + "</td>"
+            }
+        }
+
+        // var tr = document.createElement("tr");
+        // document.getElementsByTagName("table")[0].appendChild(tr);
+        // tr.innerHTML = `<td>${listPersones[listPersones.length-1].Name}</td><td>${listPersones[listPersones.length-1].Age}</td>`;
+    }
+
+   // delete old object and add the newest 
+    function empty(){
+    var tableRow = table.getElementsByTagName('tr');
+     var rowCount =  tableRow.length;
+    for (var x=rowCount-1; x>0; x--) {
+        table.removeChild(tableRow[x]);
+    }   
+}
+
+</script>
+</body>
+</html>
