@@ -13,7 +13,7 @@
         <input type="button" value="Add" onclick="add()">
         <select name="sort" id="sort" onchange="sortTable()">
             <option disabled selected hidden value>Sort by</option>
-            <option>Name (ascendant)</option>
+            <option value="Name_asc">Name (ascendant)</option>
             <option>Name (Descendant)</option>
             <option value="Age_asc">Age (ascendant)</option>
             <option value="Age_desc">Age (Descendant)</option>
@@ -85,7 +85,12 @@ function baseSort(){
     }
     else if (Sort.options[Sort.selectedIndex].value =="Age_desc"){
         listPersones.sort(function(a,b){return b.Age - a.Age})
+    }
 
+    else if (Sort.options[Sort.selectedIndex].value =="Name_asc"){
+        listPersones.sort(function(a,b){
+            if(a.Name>b.Name){return }
+        })
     }
 }
 
