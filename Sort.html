@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+
+<script>
+    var firstParag = document.createElement('p');
+    firstParag.setAttribute('id','paragraph_1')
+    document.body.appendChild(firstParag);
+
+
+    var secondParag = document.createElement('p');
+    secondParag.setAttribute('id','paragraph_2' )
+    document.body.appendChild(secondParag);
+
+    var thirdParag = document.createElement('p');
+    thirdParag.setAttribute('id','paragraph_3' )
+    document.body.appendChild(thirdParag);
+
+    // var Table = [12, 35, 4, 71];
+    var Table = [" solicode ", " foot ", " youtube ", " ear "]
+
+    //initial order
+    firstParag.innerHTML= "Initail order: <br>"+Table +"<br>"
+    
+    //Ascending order
+    // Table.sort(function(a,b){return a-b});
+    Table.sort()
+    // secondParag.innerHTML="Ascending order: <br>"+Table +"<br>"
+    secondParag.innerHTML="A-Z order: <br>"+Table +"<br>"
+
+
+    //Descending order
+    // Table.sort(function(a,b){return b-a});
+    Table.sort().reverse()
+    // thirdParag.innerHTML = "Descending order: <br>"+Table
+    thirdParag.innerHTML = "Z-A order: <br>"+Table
+
+
+
+
+</script>
+</html>
