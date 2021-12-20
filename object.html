@@ -14,7 +14,7 @@
         <select name="sort" id="sort" onchange="sortTable()">
             <option disabled selected hidden value>Sort by</option>
             <option value="Name_asc">Name (ascendant)</option>
-            <option>Name (Descendant)</option>
+            <option value="Name_desc">Name (Descendant)</option>
             <option value="Age_asc">Age (ascendant)</option>
             <option value="Age_desc">Age (Descendant)</option>
         </select>
@@ -37,12 +37,12 @@
     var listPersones =[]
     
     class person {
-        constructor (Name,Age) {
-        this.Name = Name
-        this.Age = Age }
+        constructor (name,age) {
+        this.Name = name
+        this.Age = age }
     } 
 
-    // add totable js with click
+    // add to js table with click
     function add(){
         const persons = new person(info[0].value, info[1].value)
         listPersones.push(persons); 
@@ -72,11 +72,11 @@
     }
 
    // delete old object and add the newest 
-    function empty(){
+     function empty(){
     var tableRow = table.getElementsByTagName('tr');
-     var rowCount =  tableRow.length;
+    var rowCount =  tableRow.length;
     for (var x=rowCount-1; x>0; x--) {
-        table.removeChild(tableRow[x]);
+    table.removeChild(tableRow[x]);
     }   
 }
 function baseSort(){
@@ -87,10 +87,17 @@ function baseSort(){
         listPersones.sort(function(a,b){return b.Age - a.Age})
     }
 
-    else if (Sort.options[Sort.selectedIndex].value =="Name_asc"){
+    else if (Sort.options[Sort.selectedIndex].value =="Name_desc"){
         listPersones.sort(function(a,b){
-            if(a.Name>b.Name){return }
+            if(a.Name>b.Name){return -1;}
+            // if(b.Name>a.Name){return 1}
         })
+    }
+
+    else if (Sort.options[Sort.selectedIndex].value =="Name_asc"){
+            listPersones.sort(function(a,b){
+                if (a.Name < b.Name){ return -1}
+            })
     }
 }
 
