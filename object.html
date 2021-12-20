@@ -11,12 +11,12 @@
         <input type="text" name="Name">
         <input type="text" name="Age">
         <input type="button" value="Add" onclick="add()">
-        <select name="sort" id="">
+        <select name="sort" id="sort" onchange="sortTable()">
             <option disabled selected hidden value>Sort by</option>
-            <option> Name (ascendant)</option>
+            <option>Name (ascendant)</option>
             <option>Name (Descendant)</option>
-            <option>Age (ascendant)</option>
-            <option>Age (Descendant)</option>
+            <option value="Age_asc">Age (ascendant)</option>
+            <option value="Age_desc">Age (Descendant)</option>
         </select>
   </form>
     <br><br><br>
@@ -33,7 +33,9 @@
 <script>
     var table = document.getElementById('myTable')
     var info = document.getElementsByTagName("input");
+    var Sort = document.getElementById('sort')
     var listPersones =[]
+    
     class person {
         constructor (Name,Age) {
         this.Name = Name
@@ -45,10 +47,13 @@
         const persons = new person(info[0].value, info[1].value)
         listPersones.push(persons); 
         empty();
+        baseSort();
         fill();  
+
     }
 
     // add elements to html table
+    
     function fill() {
 
         for (i=0; i<listPersones.length; i++) {
@@ -58,6 +63,7 @@
                     myTr.innerHTML += "<td>" + listPersones[i].Name + "</td>"
                     myTr.innerHTML += "<td>" + listPersones[i].Age + "</td>"
             }
+           
         }
 
         // var tr = document.createElement("tr");
@@ -73,7 +79,22 @@
         table.removeChild(tableRow[x]);
     }   
 }
+function baseSort(){
+    if (Sort.options[Sort.selectedIndex].value =="Age_asc"){
+        listPersones.sort(function(a,b){return a.Age -b.Age})
+    }
+    else if (Sort.options[Sort.selectedIndex].value =="Age_desc"){
+        listPersones.sort(function(a,b){return b.Age - a.Age})
 
+    }
+}
+
+function sortTable(){
+    baseSort()
+    empty()
+    fill()
+   
+}
 </script>
 </body>
 </html>
